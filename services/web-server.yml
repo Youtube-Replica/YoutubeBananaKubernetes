@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-server
+spec:
+  selector:
+    app: ws
+  ports:
+  - name: "12345"
+    port: 12345
+    targetPort: 12345
+  type: NodePort

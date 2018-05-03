@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database-service
+  labels:
+    app: database-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database-app
+  template:
+    metadata:
+      labels:
+        app: database-app
+    spec:
+      containers:
+      - name: database-service
+        image: hazemelagaty/database-service:2.1
+        args:
+        - bash
+        - -c
+        - sleep 10; java -jar ./target/WebServer-1.0-SNAPSHOT-jar-with-dependencies.jar;
+        ports:
+        - containerPort: 6379
+      restartPolicy: Always

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+  labels:
+    app: user-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-app
+  template:
+    metadata:
+      labels:
+        app: user-app
+    spec:
+      containers:
+      - name: user-service
+        image: hazemelagaty/user-service:2.1
+        args:
+        - bash
+        - -c
+        - sleep 10; java -jar ./target/WebServer-1.0-SNAPSHOT-jar-with-dependencies.jar;
+        ports:
+        - containerPort: 6379
+      restartPolicy: Always

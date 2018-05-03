@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-server
+  labels:
+    app: ws
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ws
+  template:
+    metadata:
+      labels:
+        app: ws
+    spec:
+      containers:
+      - name: web-server
+        image: hazemelagaty/youtube-server:2.1
+        args:
+        - bash
+        - -c
+        - sleep 10; java -jar ./target/WebServer-1.0-SNAPSHOT-jar-with-dependencies.jar;
+        ports:
+        - containerPort: 6379
+      restartPolicy: Always
