@@ -23,4 +23,5 @@ spec:
         - sleep 10; java -jar ./target/WebServer-1.0-SNAPSHOT-jar-with-dependencies.jar;
         ports:
         - containerPort: 6379
+        imagePullPolicy: Always
       restartPolicy: Always
