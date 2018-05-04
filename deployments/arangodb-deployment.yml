@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arango-db
+  labels:
+    app: arango-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arango-db
+  template:
+    metadata:
+      labels:
+        app: arango-db
+    spec:
+      containers:
+      - name: arango-db
+        image: hazemelagaty/arangodb-service:2.1
+        env:
+        - name: ARANGO_ROOT_PASSWORD
+          value: ""
+        ports:
+        - containerPort: 8529
+      restartPolicy: Always
