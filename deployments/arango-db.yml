@@ -1,0 +1,15 @@
+apiVersion: "database.arangodb.com/v1alpha"
+kind: "ArangoDeployment"
+metadata:
+  name: arango-db
+  labels:
+    app: arango-db
+spec:
+  mode: Cluster
+  agents:
+    count: 3
+  dbservers:
+    count: 3
+  coordinators:
+    count: 2
+  #image: hazemelagaty/arangodb-service:2.1
