@@ -9,3 +9,4 @@ spec:
   - name: "12345"
     port: 12345
     targetPort: 12345
+  type: LoadBalancer
