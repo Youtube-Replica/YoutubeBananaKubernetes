@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: search-service
+  labels:
+    app: search-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search-app
+  template:
+    metadata:
+      labels:
+        app: search-app
+    spec:
+      containers:
+      - name: search-service
+        image: hazemelagaty/search-service:2.1
+        args:
+        - bash
+        - -c
+        - sleep 10; java -jar ./target/Search-1.0-SNAPSHOT-jar-with-dependencies;
+        ports:
+        - containerPort: 6380
+      restartPolicy: Always

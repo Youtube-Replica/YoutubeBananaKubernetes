@@ -1,27 +1,26 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: comment-service
+  name: video-service
   labels:
-    app: comment-app
+    app: video-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: comment-app
+      app: video-app
   template:
     metadata:
       labels:
-        app: comment-app
+        app: video-app
     spec:
       containers:
-      - name: comment-service
-        image: hazemelagaty/comment-service:2.1
+      - name: video-service
+        image: hazemelagaty/video-service:2.1
         args:
         - bash
         - -c
-        - sleep 10; java -jar ./target/Comment-1.0-SNAPSHOT-jar-with-dependencies.jar;
+        - sleep 10; java -jar ./target/Subscription-1.0-SNAPSHOT-jar-with-dependencies;
         ports:
         - containerPort: 6380
-        imagePullPolicy: Always
       restartPolicy: Always

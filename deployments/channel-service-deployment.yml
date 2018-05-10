@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: channel-service
+  labels:
+    app: channel-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: channel-app
+  template:
+    metadata:
+      labels:
+        app: channel-app
+    spec:
+      containers:
+      - name: channel-service
+        image: hazemelagaty/channel-service:2.1
+        args:
+        - bash
+        - -c
+        - sleep 10; java -jar ./target/Comment-1.0-SNAPSHOT-jar-with-dependencies;
+        ports:
+        - containerPort: 6380
+      restartPolicy: Always

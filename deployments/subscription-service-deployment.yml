@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: subscription-service
+  labels:
+    app: subscription-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscription-app
+  template:
+    metadata:
+      labels:
+        app: subscription-app
+    spec:
+      containers:
+      - name: subscription-service
+        image: hazemelagaty/subscription-service:2.1
+        args:
+        - bash
+        - -c
+        - sleep 10; java -jar ./target/Subscription-1.0-SNAPSHOT-jar-with-dependencies.jar;
+        ports:
+        - containerPort: 6380
+      restartPolicy: Always
