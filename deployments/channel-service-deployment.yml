@@ -20,7 +20,7 @@ spec:
         args:
         - bash
         - -c
-        - sleep 10; java -jar ./target/Comment-1.0-SNAPSHOT-jar-with-dependencies;
+        - sleep 10; java -jar ./target/Comment-1.0-SNAPSHOT-jar-with-dependencies.jar;
         ports:
         - containerPort: 6380
       restartPolicy: Always
